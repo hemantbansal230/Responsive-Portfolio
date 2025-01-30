@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: black;
+        }
+        .navbar {
+            background-color: #ff0303;
+            padding: 10px 50px; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: larger;
+            position: sticky;
+            width: 100%;
+            height: 70px;
+        }
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            margin-left: auto; 
+        }
+
+        .navbar ul li {
+            margin: 0 20px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .navbar ul li a:hover {
+            transform: scale(1.1);
+            color: #080808;
+        }
+
+        .hamburger {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            left: 20px; 
+            top: 20px; 
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 4px 0;
+            transition: 0.4s;
+        }
+
+        .popup-menu {
+            display: none;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 200px;
+            background-color: #494040;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .popup-menu ul {
+            list-style: none;
+            padding: 20px;
+            font-size: 1.2em;
+            display: block;
+            text-align: center;
+        }
+
+        .popup-menu ul li {
+            margin: 15px 0;
+        }
+
+        .popup-menu ul li a {
+            text-decoration: none;
+            color: #fc0303;
+            font-weight: bold;
+        }
+
+        .popup-menu.active {
+            display: block;
+        }
+
+        .container {
+            color: red;
+            font-size: larger;
+            margin-top: 50px;
+            border: 2px solid red;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        h1 {
+            color: red;
+        }
+        .form-check-label {
+            color: red;
+        }
+        .btn-danger {
+            background-color: red;
+            border-color: rgb(249, 245, 245);
+        }
+        .error {
+            color: red;
+            font-size: smaller;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar"> 
+        <header>
+            <nav> 
+                <ul> 
+                    <li><a href="index.html#home">&nbsp;&nbsp;&nbsp;Home</a></li> 
+                    <li><a href="index.html#about">About Me</a></li> 
+                    <li><a href="index.html#gallery">Gallery</a></li> 
+                    <li><a href="index.html#companies">Companies</a></li> 
+                </ul> 
+                <div class="hamburger" onclick="toggleMenu()">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </nav> 
+        </header>
+        <div id="popupMenu" class="popup-menu">
+            <ul>
+                <li><a href="faq.html">FAQ's</a></li>
+                <li><a href="contact us page.html">Contact us</a></li>
+                <li><a href="our team.html">Our Team</a></li>
+            </ul>
+        </div>
+    </div> 
+
+    <div class="container">
+        <center><h1>Log in</h1></center>
+        <hr size="5" color="red" width="130">
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email id:</label>
+                <input type="text" name="fname" class="form-control" id="email" maxlength="50" required />
+                <small class="error" id="emailError"></small>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" name="pwd" class="form-control" id="password" required />
+                <small class="error" id="passwordError"></small>
+            </div>
+            <div class="form-group">
+                <label>Language:</label><br>
+                <div class="form-check form-check-inline">
+                    <input type="checkbox" name="cb1" class="form-check-input" id="hindi">
+                    <label class="form-check-label" for="hindi">Hindi</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="checkbox" name="cb1" class="form-check-input" id="english" checked>
+                    <label class="form-check-label" for="english">English</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="checkbox" name="cb1" class="form-check-input" id="punjabi">
+                    <label class="form-check-label" for="punjabi">Punjabi</label>
+                </div>
+                <small class="error" id="languageError"></small>
+            </div>
+            <div class="form-group">
+                <label>Gender:</label><br>
+                <div class="form-check form-check-inline">
+                    <input type="radio" name="r1" class="form-check-input" id="male">
+                    <label class="form-check-label" for="male">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" name="r1" class="form-check-input" id="female">
+                    <label class="form-check-label" for="female">Female</label>
+                </div>
+                <small class="error" id="genderError"></small>
+            </div>
+            <div class="form-group" id="otpField">
+                <label for="otp">OTP:</label>
+                <input type="number" name="otp" class="form-control" id="otp" required />
+                <small class="error" id="otpError"></small>
+            </div>
+            <button type="submit" class="btn btn-danger btn-block">Submit</button>
+        </form>
+    </div>
+    <script>
+        function validateForm(event) {
+            event.preventDefault();  
+    
+            clearErrors();
+    
+            let isValid = true;
+    
+            const email = document.getElementById('email').value;
+            const emailError = document.getElementById('emailError');
+            if (!email || !email.includes('@')) {
+                emailError.textContent = 'Please enter a valid email address.';
+                isValid = false;
+            }
+    
+            const password = document.getElementById('password').value;
+            const passwordError = document.getElementById('passwordError');
+            if (!password || password.length < 6) {
+                passwordError.textContent = 'Password should be at least 6 characters long.';
+                isValid = false;
+            }
+    
+            const languageCheckboxes = document.querySelectorAll('input[name="cb1"]:checked');
+            const languageError = document.getElementById('languageError');
+            if (languageCheckboxes.length === 0) {
+                languageError.textContent = 'Please select at least one language.';
+                isValid = false;
+            }
+    
+            const genderRadioButtons = document.querySelectorAll('input[name="r1"]:checked');
+            const genderError = document.getElementById('genderError');
+            if (genderRadioButtons.length === 0) {
+                genderError.textContent = 'Please select your gender.';
+                isValid = false;
+            }
+    
+            const otp = document.getElementById('otp').value;
+            const otpError = document.getElementById('otpError');
+            if (!otp || otp.length !== 6) {
+                otpError.textContent = 'OTP must be exactly 6 digits.';
+                isValid = false;
+            }
+    
+            if (isValid) {
+                alert('Form submitted successfully!');
+            }
+        }
+    
+        function clearErrors() {
+            document.getElementById('emailError').textContent = '';
+            document.getElementById('passwordError').textContent = '';
+            document.getElementById('languageError').textContent = '';
+            document.getElementById('genderError').textContent = '';
+            document.getElementById('otpError').textContent = '';
+        }
+    
+        function toggleMenu() {
+            const popupMenu = document.getElementById('popupMenu');
+            popupMenu.classList.toggle('active');
+        }
+    
+        document.getElementById('loginForm').addEventListener('submit', validateForm);
+    </script>
+</body>
+</html>

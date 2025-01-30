@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequently Asked Questions</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        
+               .navbar {
+            background-color:#fa0202;
+            padding: 10px 50px; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: larger;
+            position: sticky;
+            width: 100%;
+            height: 50px;
+        }
+        
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            margin-left: auto;
+        }
+
+        .navbar ul li {
+            margin: 0 20px;
+            color: #fa0202;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        .navbar ul li a:hover {
+            transform: scale(1.1);
+            color: #080808;
+        }
+
+        .hamburger {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            left: 20px; 
+            top: 20px; 
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 4px 0;
+            transition: 0.4s;
+        }
+        .popup-menu {
+            display: none; 
+            position: absolute;
+            top: 60px; 
+            left: 0;
+            width: 200px; 
+            background-color: #494040;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 10; 
+        }
+        .popup-menu ul {
+            list-style: none;
+            padding: 20px;
+            font-size: 1.2em;
+            display: block;
+            text-align: center;
+        }
+
+        .popup-menu ul li {
+            margin: 15px 0; 
+        }
+
+        .popup-menu ul li a {
+            text-decoration: none;
+            color: #fc0303;
+            font-weight: bold;
+        }
+        .popup-menu.active {
+            display: block;
+        }
+
+        .container {
+            background-color: #fa0202; 
+            color: black;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        p {
+            line-height: 1.6;
+            font-size: 1em;
+            margin: 15px 0;
+        }
+        .faq-item {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-bottom: 2px solid rgba(255, 99, 71, 0.5);
+            font-size: large;
+        }
+        .faq-item:last-child {
+            border-bottom: none; 
+        }
+        .faq-question {
+            font-weight: bold;
+            color: white; 
+            cursor: pointer;
+        }
+        .faq-answer {
+            display: none;
+            margin-top: 10px;
+            padding-left: 20px;
+            font-size: 1.1em;
+        }
+        #searchBox {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            border: 2px solid #f9f5f5;
+            border-radius: 5px;
+            background-color: #333;
+            color: white;
+        }
+        #viewMoreBtn {
+            background-color:#333;
+            color:  rgba(255, 99, 71, 0.8);
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2em;
+            width: 100%;
+            text-align: center;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        #viewMoreBtn:hover {
+            background-color: #020202;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar"> 
+        <header>
+            <nav> 
+                <ul> 
+                    <li><a href="index.html#home">&nbsp;&nbsp;&nbsp;Home</a></li> 
+                    <li><a href="index.html#about">About Me</a></li> 
+                    <li><a href="index.html#gallery">Gallery</a></li> 
+                    <li><a href="index.html#companies">Companies</a></li> 
+                </ul> 
+                <div class="hamburger" onclick="toggleMenu()">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </nav> 
+        </header>
+        <div id="popupMenu" class="popup-menu">
+            <ul>
+                <li><a href="login page.html">Login</a></li>
+                <li><a href="contact us page.html">Contact us</a></li>
+                <li><a href="our team.html">Our Team</a></li>
+            </ul>
+        </div>
+    </div> 
+    <br>
+    <br>
+
+    <div class="container">
+        <h1>Frequently Asked Questions</h1>
+        <input type="text" id="searchBox" placeholder="Search for a question..." onkeyup="filterQuestions()">
+
+        
+        <div class="faq-item" data-question="Who is Elon Musk?">
+            <p class="faq-question" onclick="toggleAnswer(this)">1) Who is Elon Musk?</p>
+            <p class="faq-answer">Elon Musk is a billionaire entrepreneur, inventor, and CEO known for founding and leading several high-profile technology companies, including Tesla and SpaceX.</p>
+        </div>
+
+        <div class="faq-item" data-question="What companies did Elon Musk found?">
+            <p class="faq-question" onclick="toggleAnswer(this)">2) What companies did Elon Musk found?</p>
+            <p class="faq-answer">Musk founded Zip2, X.com (which later became PayPal), SpaceX, Tesla, Neuralink, and The Boring Company.</p>
+        </div>
+
+        <div class="faq-item" data-question="What is SpaceX?">
+            <p class="faq-question" onclick="toggleAnswer(this)">3) What is SpaceX?</p>
+            <p class="faq-answer">SpaceX is a private aerospace manufacturer and space transportation company founded by Musk in 2002, focused on reducing the cost of space travel and enabling the colonization of Mars.</p>
+        </div>
+
+        <div class="faq-item" data-question="What is Tesla?">
+            <p class="faq-question" onclick="toggleAnswer(this)">4) What is Tesla?</p>
+            <p class="faq-answer">Tesla, Inc. is an electric vehicle and clean energy company founded in 2003, aiming to accelerate the world's transition to sustainable energy through electric cars and solar products.</p>
+        </div>
+
+        <div class="faq-item" data-question="What are Neuralink's goals?">
+            <p class="faq-question" onclick="toggleAnswer(this)">5) What are Neuralink's goals?</p>
+            <p class="faq-answer">Neuralink aims to develop brain-computer interfaces to help treat neurological conditions and enhance human cognitive abilities.</p>
+        </div>
+
+        <div class="faq-item" data-question="What is The Boring Company?">
+            <p class="faq-question" onclick="toggleAnswer(this)">6) What is The Boring Company?</p>
+            <p class="faq-answer">Founded in 2016, The Boring Company focuses on tunnel construction and infrastructure to alleviate traffic congestion in urban areas.</p>
+        </div>
+
+        <div class="faq-item" data-question="What is Elon Musk’s vision for Mars?">
+            <p class="faq-question" onclick="toggleAnswer(this)">7) What is Elon Musk’s vision for Mars?</p>
+            <p class="faq-answer">Musk envisions establishing a human settlement on Mars, making humanity a multi-planetary species to ensure survival in the event of catastrophic events on Earth.</p>
+        </div>
+
+        <div class="faq-item" data-question="What is Musk's educational background?">
+            <p class="faq-question" onclick="toggleAnswer(this)">8) What is Musk's educational background?</p>
+            <p class="faq-answer">He studied physics and economics at the University of Pennsylvania and briefly attended Stanford University for a PhD in applied physics but dropped out after just two days.</p>
+        </div>
+
+        <div class="faq-item" data-question="What is Elon Musk’s role in renewable energy?">
+            <p class="faq-question" onclick="toggleAnswer(this)">9) What is Elon Musk’s role in renewable energy?</p>
+            <p class="faq-answer">Musk promotes renewable energy through Tesla’s solar products and electric vehicles, advocating for sustainable energy solutions worldwide.</p>
+        </div>
+
+        <div class="faq-item" data-question="How has Musk influenced the automotive industry?">
+            <p class="faq-question" onclick="toggleAnswer(this)">10) How has Musk influenced the automotive industry?</p>
+            <p class="faq-answer">Musk has accelerated the adoption of electric vehicles, compelling traditional automakers to invest in EV technology and infrastructure.</p>
+        </div>
+
+        <div class="faq-item" data-question="What is the Hyperloop?">
+            <p class="faq-question" onclick="toggleAnswer(this)">11) What is the Hyperloop?</p>
+            <p class="faq-answer">The Hyperloop is a proposed high-speed transportation system, designed by Elon Musk, that would transport passengers in pressurized capsules through low-pressure tubes at speeds of up to 760 mph.</p>
+        </div>
+
+        <div class="faq-item" data-question="What is Elon Musk's stance on artificial intelligence?">
+            <p class="faq-question" onclick="toggleAnswer(this)">12) What is Elon Musk's stance on artificial intelligence?</p>
+            <p class="faq-answer">Musk is an outspoken critic of unchecked AI development, warning of its potential dangers and advocating for regulatory oversight to prevent harmful consequences.</p>
+        </div>
+
+        <div class="faq-item" data-question="What is SolarCity?">
+            <p class="faq-question" onclick="toggleAnswer(this)">13) What is SolarCity?</p>
+            <p class="faq-answer">SolarCity was a solar energy services company co-founded by Musk's cousins in 2006, which was later acquired by Tesla to integrate solar energy solutions with electric vehicles and battery storage.</p>
+        </div>
+
+        <div class="faq-item" data-question="Why did Elon Musk create a flamethrower?">
+            <p class="faq-question" onclick="toggleAnswer(this)">14) Why did Elon Musk create a flamethrower?</p>
+            <p class="faq-answer">The flamethrower was a limited-edition product sold by The Boring Company as a fun promotional item, raising funds for their tunnel projects.</p>
+        </div>
+
+        <div class="faq-item" data-question="What is the Tesla Model S?">
+            <p class="faq-question" onclick="toggleAnswer(this)">15) What is the Tesla Model S?</p>
+            <p class="faq-answer">The Tesla Model S is an all-electric luxury sedan designed for high performance and long-range driving, one of the company's most popular vehicles.</p>
+        </div>
+
+        <div class="faq-item" data-question="What is Tesla's Autopilot?">
+            <p class="faq-question" onclick="toggleAnswer(this)">16) What is Tesla's Autopilot?</p>
+            <p class="faq-answer">Tesla's Autopilot is an advanced driver-assistance system that offers features such as automatic lane-keeping, adaptive cruise control, and semi-autonomous driving capabilities.</p>
+        </div>
+
+        <div class="faq-item" data-question="What is the role of SpaceX in NASA's Artemis program?">
+            <p class="faq-question" onclick="toggleAnswer(this)">17) What is the role of SpaceX in NASA's Artemis program?</p>
+            <p class="faq-answer">SpaceX has been selected to develop the Human Landing System for NASA’s Artemis program, which aims to return humans to the Moon.</p>
+        </div>
+
+        <div class="faq-item" data-question="What is the Starship?">
+            <p class="faq-question" onclick="toggleAnswer(this)">18) What is the Starship?</p>
+            <p class="faq-answer">Starship is SpaceX’s next-generation spacecraft designed to carry humans to Mars and beyond. It is a fully reusable spacecraft capable of both orbital and interplanetary travel.</p>
+        </div>
+
+        <div class="faq-item" data-question="What is Elon Musk’s involvement in the development of OpenAI?">
+            <p class="faq-question" onclick="toggleAnswer(this)">19) What is Elon Musk’s involvement in the development of OpenAI?</p>
+            <p class="faq-answer">Musk co-founded OpenAI in 2015 to promote and develop artificial intelligence in a safe and ethical manner, though he is no longer directly involved in the organization.</p>
+        </div>
+
+        <div class="faq-item" data-question="What is the Tesla Gigafactory?">
+            <p class="faq-question" onclick="toggleAnswer(this)">20) What is the Tesla Gigafactory?</p>
+            <p class="faq-answer">The Tesla Gigafactory is a large-scale facility dedicated to producing electric vehicles, batteries, and other components to support Tesla’s mission of accelerating sustainable energy.</p>
+        </div>
+        <button id="viewMoreBtn" onclick="showMoreQuestions()">Click to view more questions</button>
+        <div id="additionalQuestions" style="display: none;">
+            <div class="faq-item" data-question="What is the Tesla Model 3?">
+                <p class="faq-question" onclick="toggleAnswer(this)">21) What is the Tesla Model 3?</p>
+                <p class="faq-answer">The Tesla Model 3 is an affordable electric sedan designed to make electric vehicles accessible to a wider audience while maintaining high performance and range.</p>
+            </div>
+            <div class="faq-item" data-question="How does SpaceX plan to colonize Mars?">
+                <p class="faq-question" onclick="toggleAnswer(this)">22) How does SpaceX plan to colonize Mars?</p>
+                <p class="faq-answer">SpaceX plans to develop the Starship rocket to transport large numbers of people and cargo to Mars, with the long-term goal of establishing a sustainable colony.</p>
+            </div>
+            <div class="faq-item" data-question="What is the Tesla Roadster?">
+                <p class="faq-question" onclick="toggleAnswer(this)">23) What is the Tesla Roadster?</p>
+                <p class="faq-answer">The Tesla Roadster is an all-electric sports car that was Tesla’s first production vehicle, offering high performance and zero emissions.</p>
+            </div>
+            <div class="faq-item" data-question="What is the role of Tesla’s Powerwall?">
+                <p class="faq-question" onclick="toggleAnswer(this)">24) What is the role of Tesla’s Powerwall?</p>
+                <p class="faq-answer">Tesla’s Powerwall is a home battery system designed to store energy from solar panels or the grid, allowing homeowners to use renewable energy even during power outages.</p>
+            </div>
+            <div class="faq-item" data-question="How does SpaceX’s Starlink work?">
+                <p class="faq-question" onclick="toggleAnswer(this)">25) How does SpaceX’s Starlink work?</p>
+                <p class="faq-answer">Starlink is a satellite internet constellation developed by SpaceX to provide high-speed internet to underserved and remote areas worldwide.</p>
+            </div>
+            <div class="faq-item" data-question="How does Tesla handle self-driving technology?">
+                <p class="faq-question" onclick="toggleAnswer(this)">26) How does Tesla handle self-driving technology?</p>
+                <p class="faq-answer">Tesla uses a combination of cameras, sensors, and advanced software to develop self-driving capabilities in its cars, although full autonomy is still under development.</p>
+            </div>
+            <div class="faq-item" data-question="What is the Tesla Semi truck?">
+                <p class="faq-question" onclick="toggleAnswer(this)">27) What is the Tesla Semi truck?</p>
+                <p class="faq-answer">The Tesla Semi is an all-electric heavy-duty truck designed for freight hauling, offering lower operating costs and zero emissions compared to traditional diesel trucks.</p>
+            </div>
+            <div class="faq-item" data-question="What is the concept behind Tesla’s Cybertruck?">
+                <p class="faq-question" onclick="toggleAnswer(this)">28) What is the concept behind Tesla’s Cybertruck?</p>
+                <p class="faq-answer">The Cybertruck is a futuristic, all-electric pickup truck designed with durability, utility, and performance in mind, featuring a unique angular design and ultra-strong exoskeleton.</p>
+            </div>
+            <div class="faq-item" data-question="What’s the purpose of Tesla’s Solar Roof?">
+                <p class="faq-question" onclick="toggleAnswer(this)">29) What’s the purpose of Tesla’s Solar Roof?</p>
+                <p class="faq-answer">Tesla’s Solar Roof integrates solar panels directly into roof tiles to generate renewable energy, replacing traditional roofing materials with solar capabilities.</p>
+            </div>
+            <div class="faq-item" data-question="How did Elon Musk make his fortune?">
+                <p class="faq-question" onclick="toggleAnswer(this)">30) How did Elon Musk make his fortune?</p>
+                <p class="faq-answer">Musk made his fortune by co-founding companies like PayPal, Tesla, and SpaceX, which have revolutionized industries from online payments to electric cars and space exploration.</p>
+            </div>
+            <div class="faq-item" data-question="What is the importance of Tesla’s Gigafactories?">
+                <p class="faq-question" onclick="toggleAnswer(this)">31) What is the importance of Tesla’s Gigafactories?</p>
+                <p class="faq-answer">Tesla’s Gigafactories are critical for producing batteries and electric vehicles at scale, which helps drive down costs and accelerate the transition to sustainable energy.</p>
+            </div>
+            <div class="faq-item" data-question="What is Elon Musk’s impact on the space industry?">
+                <p class="faq-question" onclick="toggleAnswer(this)">32) What is Elon Musk’s impact on the space industry?</p>
+                <p class="faq-answer">Musk has revolutionized the space industry by reducing the cost of space travel with reusable rockets and commercializing space exploration through SpaceX.</p>
+            </div>
+            <div class="faq-item" data-question="What is SpaceX’s Falcon Heavy?">
+                <p class="faq-question" onclick="toggleAnswer(this)">33) What is SpaceX’s Falcon Heavy?</p>
+                <p class="faq-answer">The Falcon Heavy is a heavy-lift rocket developed by SpaceX that can carry large payloads into space, offering a more affordable option for sending cargo to orbit.</p>
+            </div>
+            <div class="faq-item" data-question="What is Tesla’s role in autonomous driving?">
+                <p class="faq-question" onclick="toggleAnswer(this)">34) What is Tesla’s role in autonomous driving?</p>
+                <p class="faq-answer">Tesla is at the forefront of developing self-driving technology, using neural networks and vast amounts of real-world driving data to improve its Autopilot system.</p>
+            </div>
+            <div class="faq-item" data-question="How does SpaceX fund its projects?">
+                <p class="faq-question" onclick="toggleAnswer(this)">35) How does SpaceX fund its projects?</p>
+                <p class="faq-answer">SpaceX funds its ambitious space missions through private investment, commercial contracts with NASA, and launches for private customers around the world.</p>
+            </div>
+            <div class="faq-item" data-question="What’s the Tesla Powerpack?">
+                <p class="faq-question" onclick="toggleAnswer(this)">36) What’s the Tesla Powerpack?</p>
+                <p class="faq-answer">The Tesla Powerpack is a larger-scale battery system for commercial applications, designed to store renewable energy for grid use or backup power.</p>
+            </div>
+            <div class="faq-item" data-question="What is the difference between the Tesla Model X and Model S?">
+                <p class="faq-question" onclick="toggleAnswer(this)">37) What is the difference between the Tesla Model X and Model S?</p>
+                <p class="faq-answer">The Model X is an SUV with distinctive falcon-wing doors, while the Model S is a sedan. Both are electric, but the Model X offers more space and off-road capabilities.</p>
+            </div>
+            <div class="faq-item" data-question="What is Tesla's energy division?">
+                <p class="faq-question" onclick="toggleAnswer(this)">38) What is Tesla's energy division?</p>
+                <p class="faq-answer">Tesla’s energy division focuses on solar power, energy storage solutions, and grid management, aiming to accelerate the world’s transition to sustainable energy.</p>
+            </div>
+            <div class="faq-item" data-question="What is the SpaceX Dragon spacecraft?">
+                <p class="faq-question" onclick="toggleAnswer(this)">39) What is the SpaceX Dragon spacecraft?</p>
+                <p class="faq-answer">The Dragon spacecraft is a family of spacecraft developed by SpaceX for cargo and crewed missions to the International Space Station and beyond.</p>
+            </div>
+            <div class="faq-item" data-question="How did Elon Musk’s work affect the electric vehicle industry?">
+                <p class="faq-question" onclick="toggleAnswer(this)">40) How did Elon Musk’s work affect the electric vehicle industry?</p>
+                <p class="faq-answer">Musk’s leadership of Tesla has accelerated the global adoption of electric vehicles, pushing major automakers to invest heavily in electric car development and infrastructure.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+        function toggleAnswer(questionElement) {
+            const answer = questionElement.nextElementSibling;
+            if (answer.style.display === "none" || answer.style.display === "") {
+                answer.style.display = "block";
+            } else {
+                answer.style.display = "none";
+            }
+        }
+        function filterQuestions() {
+            const searchQuery = document.getElementById("searchBox").value.toLowerCase();
+            const faqItems = document.querySelectorAll(".faq-item");
+
+            faqItems.forEach(item => {
+                const questionText = item.getAttribute("data-question").toLowerCase();
+                if (questionText.includes(searchQuery)) {
+                    item.style.display = "block"; 
+                } else {
+                    item.style.display = "none"; 
+                }
+            });
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            const faqAnswers = document.querySelectorAll(".faq-answer");
+            faqAnswers.forEach(answer => {
+                answer.style.display = "none"; 
+            });
+        });
+        function showMoreQuestions() {
+            const additionalQuestions = document.getElementById("additionalQuestions");
+            additionalQuestions.style.display = "block";
+            document.getElementById("viewMoreBtn").style.display = "none"; 
+        }
+        function toggleMenu() {
+        const popupMenu = document.getElementById('popupMenu');
+        popupMenu.classList.toggle('active'); 
+    }
+    </script>
+</body>
+</html>
